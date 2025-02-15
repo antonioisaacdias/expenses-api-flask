@@ -12,7 +12,7 @@ def list_expenses():
     expenses = get_expenses()
     return jsonify([{
         'id': e.id,
-        'description': e.descripition,
+        'description': e.description,
         'value': e.value,
         'date': e.date
     } for e in expenses])
