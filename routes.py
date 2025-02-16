@@ -8,7 +8,7 @@ def app_init():
     return 'Bem vindo!'
 
 @bp.route('/expenses', methods=['GET'])
-def list_expenses():
+def list():
     expenses = get_expenses()
     return jsonify([{
         'id': e.id,
@@ -18,7 +18,7 @@ def list_expenses():
     } for e in expenses])
 
 @bp.route('/expenses', methods=['POST'])
-def add_expense():
+def add():
     expenseData = request.get_json()
     description = expenseData.get('description')
     value = expenseData.get('value')
@@ -33,7 +33,7 @@ def add_expense():
     return jsonify({'message': 'Invalid data'}), 400
 
 @bp.route('/expenses/<string:id>', methods=['GET'])
-def fetch_expense(id):
+def fetch(id):
     expense = get_expense(id)
     if expense:
         return jsonify({
@@ -43,4 +43,19 @@ def fetch_expense(id):
             'date': expense.date.isoformat()
         }), 200
     return jsonify({'message': 'Not found'}), 404
-    
+
+@bp.route('/expenses/<string:id>', methods=['PATCH'])
+def patch(id):
+    data = request.get_json()
+    description = data.get('description')
+    value = data.get('value')
+    date = data.get('date')
+    if description and value:
+        update_expense(id, description, value)
+        return jsonify({
+            'id': id,
+            'description': description,
+            'value': value,
+            'date': date
+        }), 200
+    return jsonify({'message': 'Not found'}), 404
