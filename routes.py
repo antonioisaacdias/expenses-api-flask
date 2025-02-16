@@ -14,7 +14,8 @@ def list():
         'id': e.id,
         'description': e.description,
         'value': e.value,
-        'date': e.date
+        'date': e.date,
+        'paid': e.paid
     } for e in expenses])
 
 @bp.route('/expenses', methods=['POST'])
@@ -28,7 +29,8 @@ def add():
             'id': expense.id,
             'description': expense.description,
             'value': expense.value,
-            'date': expense.date
+            'date': expense.date,
+            'paid': expense.paid
         }), 201
     return jsonify({'message': 'Invalid data'}), 400
 
@@ -40,7 +42,9 @@ def fetch(id):
             'id': expense.id,
             'description': expense.description,
             'value': expense.value,
-            'date': expense.date.isoformat()
+            'date': expense.date.isoformat(),
+            'paid': expense.paid
+
         }), 200
     return jsonify({'message': 'Not found'}), 404
 
@@ -50,13 +54,15 @@ def patch(id):
     description = data.get('description')
     value = data.get('value')
     date = data.get('date')
+    paid = data.get('paid')
     if description and value:
-        update_expense(id, description, value)
+        update_expense(id, description, value, paid)
         return jsonify({
             'id': id,
             'description': description,
             'value': value,
-            'date': date
+            'date': date,
+            'paid': paid
         }), 200
     return jsonify({'message': 'Not found'}), 404
 

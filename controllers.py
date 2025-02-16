@@ -13,11 +13,12 @@ def create_expense(description, value):
     db.session.commit()
     return expense
 
-def update_expense(id, description, value):
+def update_expense(id, description, value, paid):
     expense = Expense.query.get(id)
     if expense:
         expense.description = description
         expense.value = value
+        expense.paid = paid
         db.session.commit()
         return expense
     
