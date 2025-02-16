@@ -1,8 +1,9 @@
+import uuid
 from database import db
 from datetime import datetime
 
 class Expense(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     description = db.Column(db.String(255), nullable=False)
     value = db.Column(db.Float, nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)

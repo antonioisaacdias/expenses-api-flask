@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, abort
 from controllers import get_expenses, get_expense, create_expense, update_expense, delete_expense
 
 bp = Blueprint('expenses', __name__)
@@ -31,3 +31,16 @@ def add_expense():
             'date': expense.date
         }), 201
     return jsonify({'message': 'Invalid data'}), 400
+
+@bp.route('/expenses/<string:id>', methods=['GET'])
+def fetch_expense(id):
+    expense = get_expense(id)
+    if expense:
+        return jsonify({
+            'id': expense.id,
+            'description': expense.description,
+            'value': expense.value,
+            'date': expense.date.isoformat()
+        }), 200
+    return jsonify({'message': 'Not found'}), 404
+    
