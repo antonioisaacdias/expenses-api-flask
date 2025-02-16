@@ -1,11 +1,12 @@
-from flask import Blueprint, request, jsonify, abort
+from flask import Blueprint, request, jsonify, render_template, redirect, flash
 from controllers import get_expenses, get_expense, create_expense, update_expense, delete_expense
 
 bp = Blueprint('expenses', __name__)
 
-@bp.route('/', methods=['GET'])
+@bp.route('/')
 def app_init():
-    return 'Bem vindo!'
+    expenses = get_expenses()
+    return render_template('index.html', title="Página Inicial", expenses=expenses)
 
 @bp.route('/expenses', methods=['GET'])
 def list():
@@ -20,18 +21,11 @@ def list():
 
 @bp.route('/expenses', methods=['POST'])
 def add():
-    expenseData = request.get_json()
-    description = expenseData.get('description')
-    value = expenseData.get('value')
+    description = request.form['description']
+    value = request.form['value']
     if description and value:
         expense = create_expense(description, value)
-        return jsonify({
-            'id': expense.id,
-            'description': expense.description,
-            'value': expense.value,
-            'date': expense.date,
-            'paid': expense.paid
-        }), 201
+        return redirect('/')
     return jsonify({'message': 'Invalid data'}), 400
 
 @bp.route('/expenses/<string:id>', methods=['GET'])
@@ -63,12 +57,12 @@ def patch(id):
             'value': value,
             'date': date,
             'paid': paid
-        }), 200
+        }), 200, redirect('/')
     return jsonify({'message': 'Not found'}), 404
 
 @bp.route('/expenses/<string:id>', methods=['DELETE'])
 def delete(id):
     expense = delete_expense(id)
     if expense:
-        return jsonify({'message': 'Expense deleted successfully'}), 200
+        return jsonify({'message': 'Expense deleted successfully'}), 200, redirect('/')
     return jsonify({'message': 'Not found'}), 404

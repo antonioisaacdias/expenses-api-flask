@@ -4,7 +4,10 @@ from database import db
 from config import Config
 from routes import bp
 
-app = Flask(__name__)
+app = Flask(__name__,
+            template_folder='views/templates',
+            static_folder='views/static')
+
 app.config.from_object(Config)
 
 db.init_app(app)
