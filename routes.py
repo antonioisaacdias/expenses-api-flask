@@ -59,3 +59,10 @@ def patch(id):
             'date': date
         }), 200
     return jsonify({'message': 'Not found'}), 404
+
+@bp.route('/expenses/<string:id>', methods=['DELETE'])
+def delete(id):
+    expense = delete_expense(id)
+    if expense:
+        return jsonify({'message': 'Expense deleted successfully'}), 200
+    return jsonify({'message': 'Not found'}), 404
