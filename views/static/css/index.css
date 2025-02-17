@@ -1,3 +1,25 @@
 .container {
     margin-top: 2rem;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  .content {
+    min-height: 100%; /* A altura mínima é 100% da tela */
+    display: flex;
+    flex-direction: column; /* Organiza os itens de cima para baixo */
+  }
+
+  .main-content {
+    flex: 1; /* Preenche o espaço restante */
+  }
+
+  footer {
+    padding: 20px;
+    text-align: center;
+  }
+
+  
