@@ -17,6 +17,9 @@ html, body {
   flex: 1; /* Preenche o espaço restante */
 }
 
+.navbar-brand {
+  cursor: pointer;
+}
 .nav-expense-table {
   align-items: center;
   width: 100%;
@@ -26,10 +29,6 @@ html, body {
 footer {
   padding: 20px;
   text-align: center;
-}
-
-.expense-table-checkbox {
-  pointer-events: none; /* Impede qualquer interação com o checkbox */
 }
 
 /* Remover os botões de incremento e decremento */
