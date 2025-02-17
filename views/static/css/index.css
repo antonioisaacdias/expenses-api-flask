@@ -26,6 +26,17 @@ footer {
   pointer-events: none; /* Impede qualquer interação com o checkbox */
 }
 
+/* Remover os botões de incremento e decremento */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Para Firefox */
+}
+
 
 
   

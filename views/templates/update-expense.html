@@ -25,10 +25,10 @@
                 <div class="row align-items-center">
                     <div class="input-group mb-3 col">
                         <span class="input-group-text" id="basic-addon1">Valor</span>
-                        <input type="number" name="value" class="form-control" value="{{expense.value}}" aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="number" step="0.01" name="value" class="form-control" value="{{expense.value}}" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                     <div class="form-check mb-3 col d-flex justify-content-center align-items-center">
-                        <input class="form-check-input me-2" type="checkbox" name="paid" id="reverseCheck1">
+                        <input class="form-check-input me-2" type="checkbox" name="paid" id="reverseCheck1" {% if expense.paid %} checked {% endif %}>
                         <label class="form-check-label" for="reverseCheck1">
                         Pagamento
                         </label>

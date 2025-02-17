@@ -39,7 +39,7 @@ def fetch(id):
 def update(id):
     description = request.form.get('description')
     value = request.form.get('value')
-    paid = True
+    paid = True if request.form.get('paid') else False
     update_expense(id, description, value, paid)
     return redirect('/')
 
