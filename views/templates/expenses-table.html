@@ -6,7 +6,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr class="text-center">
-                    <th scope="col" class="bg-secondary text-white col-2">Data de criação</th>
+                    <th scope="col" class="bg-secondary text-white col-2">Data de vencimento</th>
                     <th scope="col" class="bg-secondary text-white col-4">Descrição</th>
                     <th scope="col" class="bg-secondary text-white col-2">Valor (R$)</th>
                     <th scope="col" class="bg-secondary text-white col-1">Pago</th>
@@ -16,13 +16,13 @@
             <tbody>
                 {% for expense in expenses %}
                     <tr class="text-center al">
-                        <th scope="row" class="align-middle">{{expense.date.strftime("%d/%m/%Y")}}</th>
+                        <th scope="row" class="align-middle">{{expense.dueAt.strftime("%d/%m/%Y")}}</th>
                         <td class="align-middle">{{expense.description}}</td>
                         <td class="align-middle">{{expense.value}}</td>
                         <td class="align-middle">
                             <div class="form-check d-flex justify-content-center">
                                 <input class="form-check-input expense-table-checkbox" type="checkbox" id="flexCheckDefault"
-                                    {% if expense.paid %} checked {% endif %}>
+                                    {% if expense.paidAt %} checked {% endif %}>
                             </div>
                         </td>
                         <td class="d-flex gap-2 justify-content-center">
@@ -50,14 +50,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Descrição</span>
-                        <input type="text" required class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="description">
-                    </div>
-                    <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Valor</span>
-                        <input type="number" required step="0.01" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="value">
-                    </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Descrição</span>
+                            <input type="text" required class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="description">
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Categoria</span>
+                            <select class="form-select" name="category" aria-labelledby="inputGroup-sizing-sm" id="categorySelect">
+                                <option selected>Categoria</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        
+
+                        <div class="row mb-3">
+                            <div class="input-group input-group-sm date-wrapper">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Vencimento</span>
+                                <input type="date" required class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="dueAt">
+                            </div>
+                            <div class="input-group input-group-sm value-wrapper">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Valor</span>
+                                <input type="number" required step="0.01" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="value">
+                            </div>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>

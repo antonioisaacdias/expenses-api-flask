@@ -37,6 +37,18 @@ input[type="number"] {
     -moz-appearance: textfield; /* Para Firefox */
 }
 
+.modal-dialog {
+  .row {
+    display: flex;
+    .date-wrapper{
+      width: 60%;
+    }
+    .value-wrapper{
+      width: 40%;
+    }
+
+  }
+}
 
 
   

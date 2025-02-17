@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, render_template, redirect, flash
 from controllers import get_expenses, get_expense, create_expense, update_expense, delete_expense
 
+
 bp = Blueprint('expenses', __name__)
 
 @bp.route('/')
@@ -8,23 +9,14 @@ def app_init():
     expenses = get_expenses()
     return render_template('expenses-table.html', title="Página Inicial", expenses=expenses)
 
-@bp.route('/expenses', methods=['GET'])
-def list():
-    expenses = get_expenses()
-    return jsonify([{
-        'id': e.id,
-        'description': e.description,
-        'value': e.value,
-        'date': e.date,
-        'paid': e.paid
-    } for e in expenses])
-
 @bp.route('/expenses', methods=['POST'])
 def add():
     description = request.form['description']
     value = request.form['value']
+    category = request.form['category']
+    dueAt = request.form['dueAt']
     if description and value:
-        expense = create_expense(description, value)
+        create_expense(description, value, category, dueAt)
         return redirect('/')
     return jsonify({'message': 'Invalid data'}), 400
 
@@ -39,8 +31,8 @@ def fetch(id):
 def update(id):
     description = request.form.get('description')
     value = request.form.get('value')
-    paid = True if request.form.get('paid') else False
-    update_expense(id, description, value, paid)
+    paidAt = True if request.form.get('paidAt') else False
+    update_expense(id, description, value, paidAt)
     return redirect('/')
 
 @bp.route('/expenses/delete/<string:id>', methods=['POST'])
