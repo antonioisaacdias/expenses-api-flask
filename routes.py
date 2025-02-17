@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, render_template, redirect, flash
 from controllers import get_expenses, get_expense, create_expense, update_expense, delete_expense
-
+from datetime import date
 
 bp = Blueprint('expenses', __name__)
 
@@ -24,7 +24,7 @@ def add():
 def fetch(id):
     expense = get_expense(id)
     if expense:
-        return render_template('update-expense.html', title="Edição de Despesa", expense=expense)
+        return render_template('update-expense.html', title="Edição de Despesa", expense=expense, today = date.today())
     return jsonify({'message': 'Not found'}), 404
 
 @bp.route('/expenses/update/<string:id>', methods=['POST'])

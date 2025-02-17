@@ -3,7 +3,17 @@
 
 {% block content %}
     <div>
-        <h2>Edição de despesa</h2>
+        <div class="update-expense-header">
+            <h2>Edição de despesa</h2>
+            {% if expense.paidAt is not none %}
+                <img src="{{ url_for('static', filename='assets/paid-stamp.png') }}" class="paid-stamp" alt="carimbo de despesa paga">
+            {% elif expense.dueAt < today %}
+                <img src="{{ url_for('static', filename='assets/overdue-stamp.png') }}" class="paid-stamp" alt="carimbo de despesa vencida">
+            {% else %}
+                <img src="{{ url_for('static', filename='assets/pending-stamp.png') }}" class="paid-stamp" alt="carimbo de despesa pendente">
+            {% endif %}
+        </div>
+
         <div class="container text-center bg-light pb-2 pt-3 rounded border">
             <form action="/expenses/update/{{expense.id}}" method="post">
                 <div class="row">

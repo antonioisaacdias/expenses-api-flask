@@ -55,5 +55,15 @@ input[type="number"] {
   }
 }
 
+.update-expense-header {
+  display: flex;
+  align-items: center;
+  .paid-stamp {
+    margin-left: auto;
+    width: 15%;
+  }
+}
+
+
 
   
