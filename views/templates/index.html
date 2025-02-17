@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <title>Expense Trek</title>
 
 </head>
@@ -16,21 +16,19 @@
             <img src="{{ url_for('static', filename='assets/logo-tasktrek.svg') }}"  width="30" height="24" class="d-inline-block align-text-top">
             Expense Trek
           </a>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button hidden type="button" class="btn btn-primary" id= "btn-add-new-expense" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Adicionar
           </button>
           
         </div>
     </nav>
+
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
 
-
-      
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>
