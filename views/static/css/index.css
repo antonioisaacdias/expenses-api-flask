@@ -7,19 +7,25 @@ html, body {
     margin: 0;
   }
 
-  .content {
-    min-height: 100%; /* A altura mínima é 100% da tela */
-    display: flex;
-    flex-direction: column; /* Organiza os itens de cima para baixo */
-  }
+.content {
+  min-height: 100%; /* A altura mínima é 100% da tela */
+  display: flex;
+  flex-direction: column; /* Organiza os itens de cima para baixo */
+}
 
-  .main-content {
-    flex: 1; /* Preenche o espaço restante */
-  }
+.main-content {
+  flex: 1; /* Preenche o espaço restante */
+}
 
-  footer {
-    padding: 20px;
-    text-align: center;
-  }
+footer {
+  padding: 20px;
+  text-align: center;
+}
+
+.expense-table-checkbox {
+  pointer-events: none; /* Impede qualquer interação com o checkbox */
+}
+
+
 
   

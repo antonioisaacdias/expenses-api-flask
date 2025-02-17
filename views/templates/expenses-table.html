@@ -19,8 +19,13 @@
                         <th scope="row" class="align-middle">{{expense.date.strftime("%d/%m/%Y")}}</th>
                         <td class="align-middle">{{expense.description}}</td>
                         <td class="align-middle">{{expense.value}}</td>
-                        <td class="align-middle">{{expense.paid}}</td>
-                        <td class="d-flex gap-2">
+                        <td class="align-middle">
+                            <div class="form-check d-flex justify-content-center">
+                                <input class="form-check-input expense-table-checkbox" type="checkbox" id="flexCheckDefault"
+                                    {% if expense.paid %} checked {% endif %}>
+                            </div>
+                        </td>
+                        <td class="d-flex gap-2 justify-content-center">
                             <form action="/expenses/{{expense.id}}" method="get">
                                 <button type="submit" class="btn btn-primary">Editar</button>
                             </form>
