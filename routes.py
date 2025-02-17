@@ -6,7 +6,7 @@ bp = Blueprint('expenses', __name__)
 @bp.route('/')
 def app_init():
     expenses = get_expenses()
-    return render_template('index.html', title="Página Inicial", expenses=expenses)
+    return render_template('expenses-table.html', title="Página Inicial", expenses=expenses)
 
 @bp.route('/expenses', methods=['GET'])
 def list():
@@ -32,33 +32,16 @@ def add():
 def fetch(id):
     expense = get_expense(id)
     if expense:
-        return jsonify({
-            'id': expense.id,
-            'description': expense.description,
-            'value': expense.value,
-            'date': expense.date.isoformat(),
-            'paid': expense.paid
-
-        }), 200
+        return render_template('update-expense.html', title="Edição de Despesa", expense=expense)
     return jsonify({'message': 'Not found'}), 404
 
-@bp.route('/expenses/<string:id>', methods=['PATCH'])
-def patch(id):
-    data = request.get_json()
-    description = data.get('description')
-    value = data.get('value')
-    date = data.get('date')
-    paid = data.get('paid')
-    if description and value:
-        update_expense(id, description, value, paid)
-        return jsonify({
-            'id': id,
-            'description': description,
-            'value': value,
-            'date': date,
-            'paid': paid
-        }), 200, redirect('/')
-    return jsonify({'message': 'Not found'}), 404
+@bp.route('/expenses/update/<string:id>', methods=['POST'])
+def update(id):
+    description = request.form.get('description')
+    value = request.form.get('value')
+    paid = True
+    update_expense(id, description, value, paid)
+    return redirect('/')
 
 @bp.route('/expenses/delete/<string:id>', methods=['POST'])
 def delete(id):

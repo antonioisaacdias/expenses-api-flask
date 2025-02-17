@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% block title %}Despesas{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Edição de despesa</h1>
+        <div class="container text-center bg-light pb-2 pt-3 rounded">
+            <form action="/expenses/update/{{expense.id}}" method="post">
+                <div class="row">
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">ID</span>
+                        <input disabled type="text" name="id" class="form-control" value="{{expense.id}}" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">Criação</span>
+                        <input disabled type="text" name="date" class="form-control" value="{{expense.date.strftime('%d/%m/%Y')}}" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Descrição</span>
+                        <input type="text" name="description" class="form-control" value="{{expense.description}}" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">Valor</span>
+                        <input type="number" name="value" class="form-control" value="{{expense.value}}" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="form-check mb-3 col d-flex justify-content-center align-items-center">
+                        <input class="form-check-input me-2" type="checkbox" name="paid" id="reverseCheck1">
+                        <label class="form-check-label" for="reverseCheck1">
+                        Pagamento
+                        </label>
+                    </div>                                      
+                </div>
+                <div class="align-items-center text-end">
+                    <button type="button" class="btn btn-secondary">Cancelar</button>
+                    <form action="/expenses/delete/{{expense.id}}" method="post"></form>
+                    <button type="button" class="btn btn-danger">Excluir</button>
+                    <button type="input" class="btn btn-success">Salvar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
