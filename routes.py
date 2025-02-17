@@ -31,8 +31,10 @@ def fetch(id):
 def update(id):
     description = request.form.get('description')
     value = request.form.get('value')
-    paidAt = True if request.form.get('paidAt') else False
-    update_expense(id, description, value, paidAt)
+    paidAt = request.form.get('paidAt')
+    dueAt = request.form.get('dueAt')
+    category = request.form.get('category')
+    update_expense(id, description, value, paidAt, dueAt, category)
     return redirect('/')
 
 @bp.route('/expenses/delete/<string:id>', methods=['POST'])

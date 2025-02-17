@@ -17,11 +17,19 @@ def create_expense(description, value, category, dueAt):
 
 def update_expense(id, description, value, paidAt, dueAt, category):
     expense = Expense.query.get(id)
+    dueAtFormated = datetime.strptime(dueAt, '%Y-%m-%d').date()
+    
     if expense:
+        if paidAt:
+            paidAtFormated = datetime.strptime(paidAt, '%Y-%m-%d').date()
+            expense.paidAt = paidAtFormated
+            print(paidAt)
+        else:
+            expense.paidAt = None
+            
         expense.description = description
         expense.value = value
-        expense.paidAt = paidAt
-        expense.dueAt = dueAt
+        expense.dueAt = dueAtFormated
         expense.category = category
         db.session.commit()
         return expense
