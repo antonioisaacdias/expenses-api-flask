@@ -2,7 +2,15 @@
 {% block title %}Despesas{% endblock %}
 
 {% block content %}
-    <div class="container bg-light pb-1 pt-3 rounded">
+    <ul class="nav nav-pills nav-expense-table justify-content-end bg-light pb-2 pt-2 ps-2 pe-2 rounded border">
+        <li class="nav-item">
+            <button type="button" class="btn btn-success" id= "btn-add-new-expense" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Nova despesa
+            </button>
+        </li>
+    </ul>
+
+    <div class="container bg-light pb-1 pt-3 rounded border">
         <table class="table table-bordered">
             <thead>
                 <tr class="text-center">
@@ -39,9 +47,8 @@
             </tbody>            
         </table>
     </div>
-
         
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form action="/expenses" method="post">
             <div class="modal-dialog">
                 <div class="modal-content">

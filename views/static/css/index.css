@@ -17,6 +17,12 @@ html, body {
   flex: 1; /* Preenche o espaço restante */
 }
 
+.nav-expense-table {
+  align-items: center;
+  width: 100%;
+
+}
+
 footer {
   padding: 20px;
   text-align: center;
