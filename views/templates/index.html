@@ -12,13 +12,10 @@
 <body class="content">
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" onclick="window.location.href='/'">
             <img src="{{ url_for('static', filename='assets/logo-tasktrek.svg') }}"  width="30" height="24" class="d-inline-block align-text-top">
             Expense Trek
           </a>
-          <button hidden type="button" class="btn btn-primary" id= "btn-add-new-expense" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Adicionar
-          </button>
           
         </div>
     </nav>
