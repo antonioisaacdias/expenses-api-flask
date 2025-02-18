@@ -7,7 +7,7 @@ bp = Blueprint('expenses', __name__)
 @bp.route('/')
 def app_init():
     expenses = get_expenses()
-    return render_template('expenses-table.html', title="Página Inicial", expenses=expenses)
+    return render_template('expenses-table.html', title="Página Inicial", expenses=expenses, today = date.today())
 
 @bp.route('/expenses', methods=['POST'])
 def add():

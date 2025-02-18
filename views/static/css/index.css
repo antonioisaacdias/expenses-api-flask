@@ -64,6 +64,16 @@ input[type="number"] {
   }
 }
 
+.expense-table {
+  .paidAt-expense-table {
+    .paid-stamp {
+      font-size: 0.8rem;
+    }
+  }
+  
+}
+
+
 
 
   
